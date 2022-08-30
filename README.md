@@ -4,7 +4,9 @@
 
 ### Polaris GEM e2 Vehicle
 
-<a href="url"><img src="./images/Polaris_GEM_e2.png" width="400"></a>  
+<a href="url"><img src="./images/Polaris_GEM_e2.png" width="600"></a>  
+
+### Demo
 
 $ cd ~/demo_ws/  
 $ catkin_make
@@ -16,6 +18,10 @@ $ source devel/setup.bash
 $ roslaunch basic_launch gem_dbw_joystick.launch
 
 #### GNSS-based waypoint follower with Stanley controller and RTK enabled
+
+Click the video below.  
+
+[![](http://img.youtube.com/vi/OMHY5mE-CkM/0.jpg)](http://www.youtube.com/watch?v=OMHY5mE-CkM "Lab 1 - Part 1 ")  
 
 $ source devel/setup.bash  
 $ roslaunch basic_launch gem_pacmod_control.launch
