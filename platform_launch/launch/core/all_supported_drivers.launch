@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Interface Options -->
+  <arg name="use_socketcan" default="false" />
+
+  <!-- Sensor Options -->
+  <!--Radars-->
+  <arg name="use_esr_can" default="false" />
+  <arg name="use_esr_eth" default="false" />
+  <arg name="use_fl_srr" default="false" />
+  <arg name="use_fr_srr" default="false" />
+  <arg name="use_rl_srr" default="false" />
+  <arg name="use_rr_srr" default="false" />
+  <!--Mobileye-->
+  <arg name="use_mobileye" default="false" />
+
+  <!--LiDARs-->
+  <arg name="use_lux" default="false" />
+  <arg name="use_lux_fusion" default="false" />
+  <arg name="use_scala" default="false" />
+  <arg name="use_scala_fusion" default="false" />
+  <arg name="use_vlp16_1" default="false" />
+  <arg name="use_vlp16_2" default="false" />
+  <arg name="use_vlp16_3" default="false" />
+  <arg name="use_vlp16_4" default="false" />
+  <arg name="use_hdl32_1" default="false" />
+  <arg name="use_hdl32_2" default="false" />
+  <arg name="use_hdl64" default="false" />
+  
+  <!--GPS-->
+  <arg name="use_novatel" default="false" />
+
+  <!--Cameras-->
+  <arg name="use_usb_cam" default="false" />
+  <arg name="use_pg_1" default="false" />
+  <arg name="use_pg_2" default="false" />
+  <arg name="use_pg_3" default="false" />
+  <arg name="use_pg_4" default="false" />
+  <arg name="use_pg_5" default="false" />
+  <arg name="use_pg_6" default="false" />
+  <arg name="use_pg_7" default="false" />
+  <arg name="use_pg_8" default="false" />
+  <arg name="use_mako_1" default="false" />
+
+  <!--Drive-by-Wire-->
+  <arg name="use_dataspeed" default="false" />
+  <arg name="use_pacmod" default="false" />
+  <arg name="use_pacmod3" default="false" />
+
+  <!-- Radar Params -->
+  <arg name="esr_can_frame" default="delphi_esr_can" />
+  <arg name="esr_can_hardware_id" default="10000" />
+  <arg name="esr_can_circuit_id" default="0" />
+  <arg name="esr_can_upside_down" default="false" />
+  <arg name="esr_can_viz_mature_tracks_only" default="true" />
+  <arg name="esr_socketcan_device" default="can0" />
+  <arg name="esr_eth_frame" default="delphi_esr_eth" />
+  <arg name="esr_eth_ip" default="192.168.1.22" />
+  <arg name="esr_eth_port" default="5555" />
+  <arg name="srr_fl_frame" default="srr_fl" />
+  <arg name="srr_fl_socketcan_device" default="can0" />
+  <arg name="srr_fl_hardware_id" default="10000" />
+  <arg name="srr_fl_circuit_id" default="0" />
+  <arg name="srr_fl_upside_down" default="false" />
+  <arg name="srr_fr_frame" default="srr_fr" />
+  <arg name="srr_fr_socketcan_device" default="can0" />
+  <arg name="srr_fr_hardware_id" default="10000" />
+  <arg name="srr_fr_circuit_id" default="0" />
+  <arg name="srr_fr_upside_down" default="false" />
+  <arg name="srr_rl_frame" default="srr_rl" />
+  <arg name="srr_rl_socketcan_device" default="can0" />
+  <arg name="srr_rl_hardware_id" default="10000" />
+  <arg name="srr_rl_circuit_id" default="0" />
+  <arg name="srr_rl_upside_down" default="false" />
+  <arg name="srr_rr_frame" default="srr_rr" />
+  <arg name="srr_rr_socketcan_device" default="can0" />
+  <arg name="srr_rr_hardware_id" default="10000" />
+  <arg name="srr_rr_circuit_id" default="0" />
+  <arg name="srr_rr_upside_down" default="false" />
+
+  <!-- ME Params -->
+  <arg name="mobileye_frame" default="mobileye" />
+  <arg name="mobileye_socketcan_device" default="can0" />
+  <arg name="mobileye_hardware_id" default="10000" />
+  <arg name="mobileye_circuit_id" default="0" />
+  <arg name="mobileye_viz_frame" default="me_viz" />
+
+  <!-- Lidar Params -->
+  <arg name="lux_frame" default="ibeo_lux" />
+  <arg name="lux_ip" default="192.168.0.1" />
+  <arg name="lux_port" default="12002" />
+  <arg name="lux_fusion_frame" default="ibeo_lux" />
+  <arg name="lux_fusion_ip" default="192.168.0.100" />
+  <arg name="lux_fusion_port" default="12002" />
+  <arg name="scala_frame" default="ibeo_scala" />
+  <arg name="scala_ip" default="192.168.1.52" />
+  <arg name="scala_port" default="12004" />
+  <arg name="scala_fusion_frame" default="ibeo_scala" />
+  <arg name="scala_fusion_ip" default="192.168.0.100" />
+  <arg name="scala_fusion_port" default="12002" />
+  <arg name="vlp16_1_frame" default="vlp16_1" />
+  <arg name="vlp16_1_ip" default="192.168.1.201" />
+  <arg name="vlp16_1_port" default="2368" />
+  <arg name="vlp16_1_calibration" default="$(find velodyne_pointcloud)/params/VLP16db.yaml" if="$(arg use_vlp16_1)" />
+  <arg name="vlp16_1_min_range" default="0.4" />
+  <arg name="vlp16_1_max_range" default="130.0" />
+  <arg name="vlp16_2_frame" default="vlp16_2" />
+  <arg name="vlp16_2_ip" default="192.168.1.201" />
+  <arg name="vlp16_2_port" default="2368" />
+  <arg name="vlp16_2_calibration" default="$(find velodyne_pointcloud)/params/VLP16db.yaml" if="$(arg use_vlp16_2)" />
+  <arg name="vlp16_2_min_range" default="0.4" />
+  <arg name="vlp16_2_max_range" default="130.0" />
+  <arg name="vlp16_3_frame" default="vlp16_3" />
+  <arg name="vlp16_3_ip" default="192.168.1.201" />
+  <arg name="vlp16_3_port" default="2368" />
+  <arg name="vlp16_3_calibration" default="$(find velodyne_pointcloud)/params/VLP16db.yaml" if="$(arg use_vlp16_3)" />
+  <arg name="vlp16_3_min_range" default="0.4" />
+  <arg name="vlp16_3_max_range" default="130.0" />
+  <arg name="vlp16_4_frame" default="vlp16_4" />
+  <arg name="vlp16_4_ip" default="192.168.1.201" />
+  <arg name="vlp16_4_port" default="2368" />
+  <arg name="vlp16_4_calibration" default="$(find velodyne_pointcloud)/params/VLP16db.yaml" if="$(arg use_vlp16_4)" />
+  <arg name="vlp16_4_min_range" default="0.4" />
+  <arg name="vlp16_4_max_range" default="130.0" />
+  <arg name="hdl32_1_frame" default="hdl32_1" />
+  <arg name="hdl32_1_ip" default="192.168.1.201" />
+  <arg name="hdl32_1_port" default="2368" />
+  <arg name="hdl32_1_calibration" default="$(find velodyne_pointcloud)/params/32db.yaml" if="$(arg use_hdl32_1)" />
+  <arg name="hdl32_1_min_range" default="0.4" />
+  <arg name="hdl32_1_max_range" default="130.0" />
+  <arg name="hdl32_2_frame" default="hdl32_2" />
+  <arg name="hdl32_2_ip" default="192.168.1.201" />
+  <arg name="hdl32_2_port" default="2368" />
+  <arg name="hdl32_2_calibration" default="$(find velodyne_pointcloud)/params/32db.yaml" if="$(arg use_hdl32_2)" />
+  <arg name="hdl32_2_min_range" default="0.4" />
+  <arg name="hdl32_2_max_range" default="130.0" />
+  <arg name="hdl64_frame" default="hdl64" />
+  <arg name="hdl64_ip" default="192.168.1.201" />
+  <arg name="hdl64_port" default="2368" />
+  <arg name="hdl64_calibration" default="$(find velodyne_pointcloud)/params/64db.yaml" if="$(arg use_hdl64)" />
+  <arg name="hdl64_min_range" default="0.4" />
+  <arg name="hdl64_max_range" default="130.0" />
+  <arg name="hdl64_model" default="64E" />
+
+  <!-- GPS Params -->
+  <arg name="novatel_frame" default="novatel" />
+  <arg name="novatel_imu_frame" default="imu" />
+  <arg name="novatel_imu_rate" default="100" />
+  <arg name="novatel_imu_sample_rate" default="-1" />
+  <arg name="novatel_ip" default="192.168.74.10" />
+  <arg name="novatel_port" default="3000" />
+  <arg name="novatel_span_frame_to_ros_frame" default="false" />
+
+  <!-- Camera Params -->
+  <arg name="usb_cam_frame" default="usb_cam" />
+  <arg name="usb_cam_device" default="/dev/video0" />
+  <arg name="usb_cam_image_width" default="800" />
+  <arg name="usb_cam_image_height" default="600" />
+  <arg name="usb_cam_pixel_format" default="yuyv" />
+
+  <!--Allied Vision Mako cameras-->
+  <arg name="mako_1_ip" default="" />
+  <arg name="mako_1_frame" default=""/>
+  <arg name="mako_1_frame_rate" default="30"/>
+  <arg name="mako_1_pixel_format" default=""/>
+
+  <!-- DBW Params -->
+  <arg name="pacmod_socketcan_device" default="can0" />
+  <arg name="pacmod_hardware_id" default="10000" />
+  <arg name="pacmod_circuit_id" default="0" />
+  <arg name="pacmod_vehicle_type" default="POLARIS_GEM" />
+
+  <arg name="pacmod3_socketcan_device" default="can0" />
+  <arg name="pacmod3_hardware_id" default="10000" />
+  <arg name="pacmod3_circuit_id" default="0" />
+  <arg name="pacmod3_vehicle_type" default="POLARIS_GEM" />
+
+  <group if="$(arg use_socketcan)">
+    <remap from="sent_messages" to="can_rx" />
+    <remap from="received_messages" to="can_tx" />
+  </group>
+
+  <!-- Radars -->
+  <group if="$(arg use_esr_can)" ns="$(arg esr_can_frame)">
+    <remap from="/$(arg esr_can_frame)/as_rx/vehicle_motion" to="/vehicle/twist" if="$(arg use_dataspeed)" />
+
+    <include file="$(find delphi_esr)/launch/delphi_esr_can.launch">
+      <!--
+      <arg name="viz_mature_tracks_only" value="$(arg esr_can_viz_mature_tracks_only)" />
+      -->
+      <arg name="frame_id" value="$(arg esr_can_frame)" />
+      <arg name="esr_upside_down" value="$(arg esr_can_upside_down)" />
+      <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+      <arg name="kvaser_hardware_id" value="$(arg esr_can_hardware_id)" unless="$(arg use_socketcan)" />
+      <arg name="kvaser_circuit_id" value="$(arg esr_can_circuit_id)" unless="$(arg use_socketcan)" />
+      <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+      <arg name="socketcan_device" value="$(arg esr_socketcan_device)" if="$(arg use_socketcan)" />
+    </include>
+  </group>
+
+  <include file="$(find delphi_esr)/launch/delphi_esr_eth.launch" ns="$(arg esr_eth_frame)" if="$(arg use_esr_eth)">
+    <arg name="frame_id" value="$(arg esr_eth_frame)" />
+    <arg name="ip_address" value="$(arg esr_eth_ip)" />
+    <arg name="port" value="$(arg esr_eth_port)" />
+  </include>
+
+  <include file="$(find delphi_srr)/launch/delphi_srr.launch" if="$(arg use_fl_srr)" ns="$(arg srr_fl_frame)">
+    <arg name="srr_frame_id" value="$(arg srr_fl_frame)" />
+    <arg name="srr_upside_down" value="$(arg srr_fl_upside_down)" />
+    <arg name="srr_side" value="left" />
+    <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_hardware_id" value="$(arg srr_fl_hardware_id)" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_circuit_id" value="$(arg srr_fl_circuit_id)" unless="$(arg use_socketcan)" />
+    <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+    <arg name="socketcan_device" value="$(arg srr_fl_socketcan_device)" if="$(arg use_socketcan)" />
+  </include>
+
+  <include file="$(find delphi_srr)/launch/delphi_srr.launch" if="$(arg use_fr_srr)" ns="$(arg srr_fr_frame)">
+    <arg name="srr_frame_id" value="$(arg srr_fr_frame)" />
+    <arg name="srr_upside_down" value="$(arg srr_fr_upside_down)" />
+    <arg name="srr_side" value="right" />
+    <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_hardware_id" value="$(arg srr_fr_hardware_id)" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_circuit_id" value="$(arg srr_fr_circuit_id)" unless="$(arg use_socketcan)" />
+    <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+    <arg name="socketcan_device" value="$(arg srr_fr_socketcan_device)" if="$(arg use_socketcan)" />
+  </include>
+
+  <include file="$(find delphi_srr)/launch/delphi_srr.launch" if="$(arg use_rl_srr)" ns="$(arg srr_rl_frame)">
+    <arg name="srr_frame_id" value="$(arg srr_rl_frame)" />
+    <arg name="srr_upside_down" value="$(arg srr_rl_upside_down)" />
+    <arg name="srr_side" value="left" />
+    <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_hardware_id" value="$(arg srr_rl_hardware_id)" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_circuit_id" value="$(arg srr_rl_circuit_id)" unless="$(arg use_socketcan)" />
+    <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+    <arg name="socketcan_device" value="$(arg srr_rl_socketcan_device)" if="$(arg use_socketcan)" />
+  </include>
+
+  <include file="$(find delphi_srr)/launch/delphi_srr.launch" if="$(arg use_rr_srr)" ns="$(arg srr_rr_frame)">
+    <arg name="srr_frame_id" value="$(arg srr_rr_frame)" />
+    <arg name="srr_upside_down" value="$(arg srr_rr_upside_down)" />
+    <arg name="srr_side" value="right" />
+    <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_hardware_id" value="$(arg srr_rr_hardware_id)" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_circuit_id" value="$(arg srr_rr_circuit_id)" unless="$(arg use_socketcan)" />
+    <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+    <arg name="socketcan_device" value="$(arg srr_rr_socketcan_device)" if="$(arg use_socketcan)" />
+  </include>
+
+  <!-- ME -->
+  <include file="$(find mobileye_560_660)/launch/mobileye_560_660.launch" if="$(arg use_mobileye)" ns="$(arg mobileye_frame)">
+    <arg name="sensor_frame_id" value="$(arg mobileye_frame)" />
+    <arg name="viz_frame_id" value="$(arg mobileye_viz_frame)" />
+    <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_hardware_id" value="$(arg mobileye_hardware_id)" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_circuit_id" value="$(arg mobileye_circuit_id)" unless="$(arg use_socketcan)" />
+    <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+    <arg name="socketcan_device" value="$(arg mobileye_socketcan_device)" if="$(arg use_socketcan)" />
+  </include>
+
+  <!-- Lidars -->
+  <include file="$(find ibeo_lux)/launch/ibeo_lux.launch" ns="$(arg lux_frame)" if="$(arg use_lux)">
+    <arg name="lux_frame_id" value="$(arg lux_frame)" />
+    <arg name="is_fusion" value="false" />
+    <arg name="ip_address" value="$(arg lux_ip)" />
+    <arg name="port" value="$(arg lux_port)" />
+  </include>
+
+  <include file="$(find ibeo_lux)/launch/ibeo_lux.launch" ns="$(arg lux_fusion_frame)" if="$(arg use_lux_fusion)">
+    <arg name="lux_frame_id" value="$(arg lux_fusion_frame)" />
+    <arg name="is_fusion" value="true" />
+    <arg name="ip_address" value="$(arg lux_fusion_ip)" />
+    <arg name="port" value="$(arg lux_fusion_port)" />
+  </include>
+
+  <include file="$(find ibeo_scala)/launch/ibeo_scala.launch" ns="$(arg scala_frame)" if="$(arg use_scala)">
+    <arg name="frame_id" value="$(arg scala_frame)" />
+    <arg name="ip_address" value="$(arg scala_ip)" />
+    <arg name="port" value="$(arg scala_port)" />
+    <arg name="is_fusion" value="false" />
+  </include>
+
+  <include file="$(find ibeo_scala)/launch/ibeo_scala.launch" ns="$(arg scala_fusion_frame)" if="$(arg use_scala_fusion)">
+    <arg name="frame_id" value="$(arg scala_fusion_frame)" />
+    <arg name="ip_address" value="$(arg scala_fusion_ip)" />
+    <arg name="port" value="$(arg scala_fusion_port)" />
+    <arg name="is_fusion" value="false" />
+  </include>
+
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" ns="$(arg vlp16_1_frame)" if="$(arg use_vlp16_1)">
+    <arg name="device_ip" value="$(arg vlp16_1_ip)" />
+    <arg name="port" value="$(arg vlp16_1_port)" />
+    <arg name="frame_id" value="$(arg vlp16_1_frame)" />
+    <arg name="calibration" value="$(arg vlp16_1_calibration)"/>
+  </include>
+
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" ns="$(arg vlp16_2_frame)" if="$(arg use_vlp16_2)">
+    <arg name="device_ip" value="$(arg vlp16_2_ip)" />
+    <arg name="port" value="$(arg vlp16_2_port)" />
+    <arg name="frame_id" value="$(arg vlp16_2_frame)" />
+    <arg name="calibration" value="$(arg vlp16_2_calibration)"/>
+  </include>
+
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" ns="$(arg vlp16_3_frame)" if="$(arg use_vlp16_3)">
+    <arg name="device_ip" value="$(arg vlp16_3_ip)" />
+    <arg name="port" value="$(arg vlp16_3_port)" />
+    <arg name="frame_id" value="$(arg vlp16_3_frame)" />
+    <arg name="calibration" value="$(arg vlp16_3_calibration)"/>
+  </include>
+
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" ns="$(arg vlp16_4_frame)" if="$(arg use_vlp16_4)">
+    <arg name="device_ip" value="$(arg vlp16_4_ip)" />
+    <arg name="port" value="$(arg vlp16_4_port)" />
+    <arg name="frame_id" value="$(arg vlp16_4_frame)" />
+    <arg name="calibration" value="$(arg vlp16_4_calibration)"/>
+  </include>
+
+  <include file="$(find velodyne_pointcloud)/launch/32e_points.launch" ns="$(arg hdl32_1_frame)" if="$(arg use_hdl32_1)">
+    <arg name="device_ip" value="$(arg hdl32_1_ip)" />
+    <arg name="port" value="$(arg hdl32_1_port)" />
+    <arg name="min_range" value="$(arg hdl32_1_min_range)" />
+    <arg name="max_range" value="$(arg hdl32_1_max_range)" />
+    <arg name="frame_id" value="$(arg hdl32_1_frame)" />
+    <arg name="calibration" value="$(arg hdl32_1_calibration)"/>
+  </include>
+
+  <include file="$(find velodyne_pointcloud)/launch/32e_points.launch" ns="$(arg hdl32_2_frame)" if="$(arg use_hdl32_2)">
+    <arg name="device_ip" value="$(arg hdl32_2_ip)" />
+    <arg name="port" value="$(arg hdl32_2_port)" />
+    <arg name="frame_id" value="$(arg hdl32_2_frame)" />
+    <arg name="calibration" value="$(arg hdl32_2_calibration)"/>
+  </include>
+
+  <include file="$(find velodyne_pointcloud)/launch/64_points.launch" ns="$(arg hdl64_frame)" if="$(arg use_hdl64)">
+    <arg name="device_ip" value="$(arg hdl64_ip)" />
+    <arg name="port" value="$(arg hdl64_port)" />
+    <arg name="calibration" value="$(arg hdl64_calibration)" />
+    <arg name="frame_id" value="$(arg hdl64_frame)" />
+    <arg name="model" value="$(arg hdl64_model)" />
+  </include>
+
+<!-- Cameras -->
+<!--USB Cameras-->  
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" ns="$(arg usb_cam_frame)" if="$(arg use_usb_cam)" >
+    <param name="camera_frame_id" value="$(arg usb_cam_frame)" />
+    <param name="video_device" value="$(arg usb_cam_device)" />
+    <param name="image_width" value="$(arg usb_cam_image_width)" />
+    <param name="image_height" value="$(arg usb_cam_image_height)" />
+    <param name="pixel_format" value="$(arg usb_cam_pixel_format)" />
+    <param name="io_method" value="mmap"/>
+  </node>
+
+<!--Allied Vision Makos-->
+ 
+  
+   <group ns="mako_1" if="$(arg use_mako_1)" >
+     <node name="image_proc" pkg="image_proc" type="image_proc"/>
+   
+
+   <node name="mako_1" pkg="avt_vimba_camera" type="mono_camera_node" output="screen">
+		<param name="guid" value=""/>
+		<param name="ip" value="$(arg mako_1_ip)"/>
+		<param name="camera_info_url" value="file://$(find avt_vimba_camera)/calibrations/calibration_mako.yaml"/>
+		<param name="frame_id" value="$(arg mako_1_frame)"/>
+		<param name="trig_timestamp_topic" value=""/>
+		<param name="show_debug_prints" value="true"/>
+		<param name="IrisAutoTarget" value="50"/>
+    
+		<!-- Trigger mode:
+			1. Freerun
+			2. SyncIn1
+			3. SyncIn2
+			4. SyncIn3
+			5. SyncIn4
+			6. FixedRate
+			7. Software
+		-->
+		<param name="trigger_source" value="Freerun"/>
+
+		<!-- Acquisition mode:
+			1. Continuous
+			2. SingleFrame
+			3. MultiFrame
+			4. Recorder
+		-->
+		<param name="acquisition_mode" value="Continuous"/>
+
+		<!-- Acquisition rate in fps -->
+		<!--
+		<param name="acquisition_rate" value="$(arg mako_1_frame_rate)"/>
+		-->
+		<param name="acquisition_rate" value="30"/>
+
+              
+		<!-- Pixel format:
+			1. Mono8
+			2. Mono12
+			3. Mono12Packed
+			4. BayerRG8
+			5. BayerRG12Packed
+			6. BayerGR12
+			7. RGB8Packed
+			8. BGR8Packed
+		-->
+		<param name="pixel_format" value="$(arg mako_1_pixel_format)"/> <!--BayerRG8-->
+		
+		<!-- Exposure in us -->
+		<param name="exposure" value="1000"/>
+		
+		<!-- Gain in dB -->
+		<param name="gain" value="32"/>
+
+		<!-- Auto control
+			1. Off
+			2. Once
+			3. Continuous
+		-->
+		<param name="exposure_auto" value="Continuous"/>
+		<param name="gain_auto" value="Continuous"/>
+		<param name="whitebalance_auto" value="Continuous"/>
+
+		<param name="binning_x" value="1"/>
+		<param name="binning_y" value="1"/>
+		<param name="decimation_x" value="1"/>
+		<param name="decimation_y" value="1"/>
+		<!--
+		<param name="x_offset" value="8"/>
+		<param name="y_offset" value="9"/>
+		<param name="width" value="1920"/>
+		<param name="height" value="1440"/>
+		-->
+		<param name="x_offset" value="8"/>
+		<param name="y_offset" value="9"/>
+		<param name="width" value="1920"/>
+		<param name="height" value="1080"/>
+		
+		<param name="stream_bytes_per_second" value="115000000"/>
+		
+	</node>
+  </group>
+
+  <!-- GPS -->
+  <node pkg="novatel_gps_driver"
+        type="novatel_gps_node"
+        name="novatel_gps"
+        ns="$(arg novatel_frame)"
+        if="$(arg use_novatel)">
+    <param name="connection_type" value="tcp"/>
+    <param name="device" value="$(arg novatel_ip):$(arg novatel_port)" />
+    <param name="publish_novatel_positions" value="true" />
+    <param name="frame_id" value="$(arg novatel_frame)" />
+    <param name="imu_rate" value="$(arg novatel_imu_rate)" />
+    <param name="imu_sample_rate" value="$(arg novatel_imu_sample_rate)" />
+    <param name="imu_frame_id" value="$(arg novatel_imu_frame)" />
+    <param name="use_binary_messages" value="true" />
+    <param name="publish_nmea_messages" value="true" />
+    <param name="publish_imu_messages" value="true" />
+    <param name="publish_novatel_xyz_positions" value="true" />
+    <param name="publish_diagnostics" value="true" />
+    <param name="gpgga_gprmc_sync_tol" value="1.05" />
+    <param name="gpgga_position_sync_tol" value="1.05" />
+    <param name="span_frame_to_ros_frame" value="$(arg novatel_span_frame_to_ros_frame)" />
+  </node>
+
+  <!-- Drive-by-Wire -->
+  <include file="$(find dbw_mkz_can)/launch/dbw.launch" if="$(arg use_dataspeed)">
+    <arg name="twist_controller" value="false"/>
+  </include>
+
+  <include file="$(find pacmod)/launch/pacmod.launch" if="$(arg use_pacmod)" ns="pacmod">
+    <arg name="pacmod_vehicle_type" value="$(arg pacmod_vehicle_type)" />
+    <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_hardware_id" value="$(arg pacmod_hardware_id)" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_circuit_id" value="$(arg pacmod_circuit_id)" unless="$(arg use_socketcan)" />
+    <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+    <arg name="socketcan_device" value="$(arg pacmod_socketcan_device)" if="$(arg use_socketcan)" />
+  </include>
+
+  <include file="$(find pacmod3)/launch/pacmod3.launch" if="$(arg use_pacmod3)" ns="pacmod">
+    <arg name="pacmod_vehicle_type" value="$(arg pacmod3_vehicle_type)" />
+    <arg name="use_kvaser" value="true" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_hardware_id" value="$(arg pacmod3_hardware_id)" unless="$(arg use_socketcan)" />
+    <arg name="kvaser_circuit_id" value="$(arg pacmod3_circuit_id)" unless="$(arg use_socketcan)" />
+    <arg name="use_socketcan" value="true" if="$(arg use_socketcan)" />
+    <arg name="socketcan_device" value="$(arg pacmod3_socketcan_device)" if="$(arg use_socketcan)" />
+  </include>
+</launch>

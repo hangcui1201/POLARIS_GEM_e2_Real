@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>basic_launch</name>
+  <version>1.0.0</version>
+  <description>Top level ROS launch file package for basic AutonomouStuff demos</description>
+  <license>Closed Source</license>
+
+  <maintainer email="software@autonomoustuff.com">AutonomouStuff Software Team</maintainer>
+  <url type="repository">https://bitbucket.org/autonomoustuff/platform_launch</url>
+  <author email="dstanek@autonomoustuff.com">Daniel Stanek</author>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

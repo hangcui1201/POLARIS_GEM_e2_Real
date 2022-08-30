@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="gem_pacmod_control" pkg="gem_pacmod_control" type="gem_pacmod_control.py" />
+  
+</launch>

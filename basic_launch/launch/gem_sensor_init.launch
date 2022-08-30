@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- robot_description is used by nodes that publish to joint_states. -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find gem_description)/urdf/gem.urdf.xacro'"/>
+
+  <!-- Read joint positions from joint_states, then publish the vehicle's state to tf. -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Should be replaced with the real hardware interface -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  
+  <!-- Launch ZED2 stereo camera -->
+  <include file="$(find zed_wrapper)/launch/zed2.launch" />
+    
+  <include file="$(find platform_launch)/launch/white_e2/platform.launch">
+    <arg name="use_lidar1" value="true" />
+    <arg name="use_gps" value="true" />
+    <arg name="use_front_radar" value="true" />
+    <!--    
+    <arg name="use_dbw" value="true" /> 
+    -->
+  </include>
+  
+  <node name="gem_rviz_text" pkg="gem_rviz_markers" type="gem_rviz_text.py" />
+  
+  <node name="gem_gnss_image" pkg="gem_gnss_image" type="gem_gnss_image.py" />
+  
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find platform_launch)/rviz/white_e2_text.rviz" />
+
+</launch>
+
+
+
+
+
+
+

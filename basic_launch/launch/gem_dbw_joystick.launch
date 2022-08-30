@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find platform_launch)/launch/white_e2/platform.launch">
+    <arg name="use_dbw" value="true" />
+  </include>
+  
+  <include file="$(find pacmod_game_control)/launch/pacmod_game_control.launch">
+    <arg name="launch_pacmod" value="false" />
+    <arg name="is_pacmod_3" value="false" />
+    <arg name="pacmod_vehicle_type" value="POLARIS_GEM" />
+  </include>
+  
+</launch>
