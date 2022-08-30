@@ -1,4 +1,6 @@
-## Starter Code of Polaris GEM e2 for [ECE484](https://publish.illinois.edu/safe-autonomy/) and [CS588](http://luthuli.cs.uiuc.edu/~daf//courses/MAAV-22/588-2022-home.html) at University of Illinois at Urbana-Champaign
+## Starter Code of Polaris GEM e2 for [ECE484](https://publish.illinois.edu/safe-autonomy/) and [CS588](http://luthuli.cs.uiuc.edu/~daf//courses/MAAV-22/588-2022-home.html)
+
+### University of Illinois at Urbana-Champaign
 
 ### Auther: Hang Cui (hangcui3@illinois.edu)
 
@@ -38,8 +40,9 @@ Click the video below.
 $ source devel/setup.bash  
 $ rosrun gem_gnss_control gem_gnss_tracker_pp.py
 
+#### Vision based (monovision camera) lane following using Stanley controller
 
+Click the video below (still under development).  
 
-
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Ns7aXRgEP2g/0.jpg)](https://www.youtube.com/watch?v=Ns7aXRgEP2g "Vision based (monovision camera) lane following using Stanley controller")  
 
