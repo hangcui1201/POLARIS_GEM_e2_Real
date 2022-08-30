@@ -2,7 +2,7 @@
 
 ### University of Illinois at Urbana-Champaign
 
-### Auther: Hang Cui (hangcui3@illinois.edu)
+### Author: Hang Cui (hangcui3@illinois.edu)
 
 ### Polaris GEM e2 Vehicle
 
