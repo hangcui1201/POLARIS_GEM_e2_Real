@@ -31,6 +31,10 @@ $ rosrun gem_gnss_control gem_gnss_tracker_stanley_rtk.py
 
 #### GNSS-based waypoints follower with Pure Pursuit controller
 
+Click the video below.  
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8l52buLR1zU/0.jpg)](https://www.youtube.com/watch?v=8l52buLR1zU "GNSS based waypoints following using pure pursuit controller")  
+
 $ source devel/setup.bash  
 $ rosrun gem_gnss_control gem_gnss_tracker_pp.py
 
