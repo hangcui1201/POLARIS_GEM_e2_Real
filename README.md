@@ -21,7 +21,7 @@ $ roslaunch basic_launch gem_dbw_joystick.launch
 
 Click the video below.  
 
-[![](http://img.youtube.com/vi/OMHY5mE-CkM/0.jpg)](http://www.youtube.com/watch?v=OMHY5mE-CkM "Lab 1 - Part 1 ")  
+[![](http://img.youtube.com/vi/DItwU_8GVHI/0.jpg)](https://youtu.be/DItwU_8GVHI "GNSS-based waypoint follower with Stanley controller and RTK enabled")  
 
 $ source devel/setup.bash  
 $ roslaunch basic_launch gem_pacmod_control.launch
