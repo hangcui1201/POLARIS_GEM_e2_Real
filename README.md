@@ -4,6 +4,8 @@
 
 ### Author: Hang Cui (hangcui3@illinois.edu)
 
+### System: Ubuntu 20.04 + ROS Noetic
+
 ### Polaris GEM e2 Vehicle
 
 <a href="url"><img src="./images/Polaris_GEM_e2.png" width="600"></a>  
