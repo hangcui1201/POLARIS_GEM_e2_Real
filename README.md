@@ -10,6 +10,10 @@
 
 <a href="url"><img src="./images/Polaris_GEM_e2.png" width="600"></a>  
 
+<a href="url"><img src="./images/GEM_Rviz1.png" width="600"></a>  
+
+<a href="url"><img src="./images/GEM_Rviz2.png" width="600"></a>  
+
 ### Demo
 
 $ cd ~/demo_ws/  
