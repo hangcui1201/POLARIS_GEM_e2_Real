@@ -2,9 +2,9 @@
 
 #### University of Illinois at Urbana-Champaign
 
-#### Author: Hang Cui (hangcui3@illinois.edu)
-
 #### System: Ubuntu 20.04 + ROS Noetic
+
+#### Author: Hang Cui (hangcui3@illinois.edu)
 
 #### Polaris GEM e2 Vehicle
 
