@@ -1,12 +1,12 @@
-## Starter Code of Polaris GEM e2 for [ECE484](https://publish.illinois.edu/safe-autonomy/) and [CS588](http://luthuli.cs.uiuc.edu/~daf//courses/MAAV-22/588-2022-home.html)
+### Starter Code of Polaris GEM e2 for [ECE484](https://publish.illinois.edu/safe-autonomy/) and [CS588](http://luthuli.cs.uiuc.edu/~daf//courses/MAAV-22/588-2022-home.html)
 
-### University of Illinois at Urbana-Champaign
+#### University of Illinois at Urbana-Champaign
 
-### Author: Hang Cui (hangcui3@illinois.edu)
+#### Author: Hang Cui (hangcui3@illinois.edu)
 
-### System: Ubuntu 20.04 + ROS Noetic
+#### System: Ubuntu 20.04 + ROS Noetic
 
-### Polaris GEM e2 Vehicle
+#### Polaris GEM e2 Vehicle
 
 <a href="url"><img src="./images/Polaris_GEM_e2.png" width="600"></a>  
 
@@ -14,7 +14,7 @@
 
 <a href="url"><img src="./images/GEM_Rviz2.png" width="600"></a>  
 
-### Demo
+#### Demo
 
 $ cd ~/demo_ws/  
 $ catkin_make
