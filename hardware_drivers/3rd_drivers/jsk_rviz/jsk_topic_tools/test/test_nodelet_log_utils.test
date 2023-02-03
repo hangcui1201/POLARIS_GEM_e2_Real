@@ -1,3 +1,0 @@
-<launch>
-  <test test-name="test_nodelet_log_utils" pkg="jsk_topic_tools" type="test_nodelet_log_utils" />
-</launch>

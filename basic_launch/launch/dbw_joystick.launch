@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <include file="$(find pacmod2_game_control)/launch/pacmod2_game_control.launch">
+  </include>
+
+</launch>
