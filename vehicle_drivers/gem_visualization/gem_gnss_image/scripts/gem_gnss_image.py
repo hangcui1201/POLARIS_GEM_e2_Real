@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 
 #================================================================
-# File name: gem_gnss_image.py                                                                  
-# Description: show vehicle's heading and position in an image                                                                
-# Author: Hang Cui
-# Email: hangcui3@illinois.edu                                                                     
-# Date created: 08/02/2021                                                                
-# Date last modified: 08/13/2021                                                          
-# Version: 0.1                                                                    
-# Usage: rosrun gem_gnss gem_gnss_image.py                                                                      
-# Python version: 3.8                                                             
+# File name          : gem_gnss_image.py                                                                  
+# Description        : show vehicle's heading and position in an image                                                                
+# Author             : Hang Cui (hangcui3@illinois.edu)                                                                     
+# Date created       : 08/13/2022                                                                
+# Date last modified : 01/25/2023                                                            
+# Version            : 0.2                                                                    
+# Usage              : rosrun gem_gnss gem_gnss_image.py                                                                      
+# Python version     : 3.8                                                             
 #================================================================
 
 from __future__ import print_function
@@ -38,7 +37,6 @@ from sensor_msgs.msg import Imu, NavSatFix
 from novatel_gps_msgs.msg import NovatelPosition, NovatelXYZ, Inspva, NovatelCorrectedImuData
 
 image_file  = 'gnss_map.png'
-# image_file  = 'gnss_map_demo.png'
 curr_path = os.path.abspath(__file__) 
 image_path = curr_path.split('scripts')[0] + 'images/' + image_file
 
@@ -63,14 +61,14 @@ class GNSSImage(object):
         self.heading  = 0
         self.gnss_sub = rospy.Subscriber("/novatel/inspva", Inspva, self.inspva_callback)
 
-        self.lat_start_bt = 40.09269  
-        self.lon_start_l  = -88.23628
-        self.lat_scale    = 0.0007    
-        self.lon_scale    = 0.00131   
+        self.lat_start_bt = 40.092722  # 40.09269  
+        self.lon_start_l  = -88.236365 # -88.23628
+        self.lat_scale    = 0.00062    # 0.0007    
+        self.lon_scale    = 0.00136    # 0.00131   
 
         self.arrow        = 40 
-        self.img_width    = 737
-        self.img_height   = 515
+        self.img_width    = 2107
+        self.img_height   = 1313
 
 
     def inspva_callback(self, inspva_msg):

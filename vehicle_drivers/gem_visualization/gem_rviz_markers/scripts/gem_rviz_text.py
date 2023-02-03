@@ -6,8 +6,8 @@
 # Author: Hang Cui
 # Email: hangcui3@illinois.edu                                                                     
 # Date created: 07/10/2021                                                                
-# Date last modified: 08/18/2022                                                          
-# Version: 1.0.0                                                                    
+# Date last modified: 07/30/2022                                                          
+# Version: 0.1                                                                    
 # Usage: rosrun gem_gnss gem_rviz_text.py                                                                     
 # Python version: 3.8                                                             
 #================================================================
@@ -67,8 +67,8 @@ class GEMOverlay(object):
 
     def update_overlaytext(self, rtk="Disabled", lat=0.0, lon=0.0, yaw=0.0, speed=0.0, steer=0.0):
         text            = OverlayText()
-        text.width      = 200
-        text.height     = 120
+        text.width      = 400
+        text.height     = 250
         text.left       = 10
         text.top        = 10
         text.text_size  = 12

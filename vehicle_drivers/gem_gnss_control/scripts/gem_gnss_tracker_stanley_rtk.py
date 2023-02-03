@@ -34,7 +34,7 @@ from tf.transformations import euler_from_quaternion, quaternion_from_euler
 from pacmod_msgs.msg import PositionWithSpeed, PacmodCmd, SystemRptFloat, VehicleSpeedRpt
 
 
-class Onlinct_errorilter(object):
+class OnlineFilter(object):
 
     def __init__(self, cutoff, fs, order):
         
@@ -113,7 +113,7 @@ class Stanley(object):
         self.desired_speed = 0.6  # m/s
         self.max_accel     = 0.48 # % of acceleration
         self.pid_speed     = PID(0.5, 0.0, 0.1, wg=20)
-        self.speed_filter  = Onlinct_errorilter(1.2, 30, 4)
+        self.speed_filter  = OnlineFilter(1.2, 30, 4)
 
         self.gnss_sub   = rospy.Subscriber("/novatel/inspva", Inspva, self.inspva_callback)
         self.lat        = 0.0
