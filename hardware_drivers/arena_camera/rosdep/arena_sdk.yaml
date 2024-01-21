@@ -1,0 +1,4 @@
+arena:
+  ubuntu:
+    source:
+      uri: "https://raw.githubusercontent.com/magazino/arena_camera/indigo-devel/rosdep/arena_sdk.rdmanifest"

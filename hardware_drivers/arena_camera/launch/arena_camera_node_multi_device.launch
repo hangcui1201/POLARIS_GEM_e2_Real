@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="respawn" default="false" />
+    <arg name="debug" default="false" />
+    <arg name="node_name" default="arena_camera_node" />
+    
+    <arg name="config_file_fr" default="$(find arena_camera)/config/camera_fr.yaml" />
+    <arg name="config_file_fl" default="$(find arena_camera)/config/camera_fl.yaml" />
+
+    <arg unless="$(arg debug)" name="launch_prefix" value="" />
+    <arg     if="$(arg debug)" name="launch_prefix" value="gdb -ex run --args" />
+
+    <!-- 
+        In this example the "arena_camera/write_device_user_id_to_camera" node
+        is used to set cameras names to cam1 amd cam2.
+            `rosrun arena_camera write_device_user_id_to_camera "NEW_NAME"`
+        
+        The "device_user_id" is used in the ROS launch to start the 
+        node using the device with the ID. 
+        
+        The ID is passed to "arena_camera/arena_camera_node" as private 
+        parameter in the launch file as follows:
+            <param name="device_user_id" type="string" value="name_of_device"/>
+        
+        More device parameters can be pass the same way. For example:
+            <param name="frame_rate" type="double" value="12"/>
+
+        Each camera has one "arena_camera_node", so for multi cameras they 
+        each camera has to be under a different name. In the example
+        one is named "arena_camera_node" and the other 
+        is "arena_camera_node_2".
+
+        After runnig the two nodes, the images can be view running these 
+        two commands:
+            `rosrun image_view image_view image:=/arena_camera_node/image_raw`
+            `rosrun image_view image_view image:=/arena_camera_node2/image_raw`
+
+    -->
+    
+    <!-- camera_fr-->
+    <node name="$(arg node_name)" ns="camera_fr" pkg="arena_camera" type="arena_camera_node" output="screen"
+          respawn="$(arg respawn)" launch-prefix="$(arg launch_prefix)">
+	<rosparam command="load" file="$(arg config_file_fr)"/>
+    </node>
+    
+    <!-- camera_fl-->
+    <node name="$(arg node_name)" ns="camera_fl" pkg="arena_camera" type="arena_camera_node" output="screen"
+          respawn="$(arg respawn)" launch-prefix="$(arg launch_prefix)">
+	<rosparam command="load" file="$(arg config_file_fl)"/>
+    </node>
+    
+    
+</launch>
+
+
+
+
+

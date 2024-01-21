@@ -25,6 +25,8 @@
   
   <include file="$(find zed_wrapper)/launch/zed2.launch" />
   
+  <include file="$(find arena_camera)/launch/arena_camera_node_multi_device.launch" />
+  
   <node type="rviz" name="rviz" pkg="rviz" args="-d $(find platform_launch)/rviz/white_e2_text.rviz" />
 
 </launch>
